@@ -1,0 +1,41 @@
+version: "1"
+
+package:
+  id: io.github.qmanga
+  name: qmanga
+  version: 0.0.0.1
+  kind: app
+  description: |
+    Manga reader written with Qt.
+
+command:
+  - /opt/apps/io.github.qmanga/files/bin/qmanga
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/kernel1024/qmanga.git
+    version: v3.1
+    commit: 04a79fba2fb289e39f45c7d7ad24adb641906e85
+
+  - kind: file
+    url: http://ftp.cn.debian.org/debian/pool/main/z/zziplib/libzzip-0-13_0.13.62-3.2+deb10u1_amd64.deb
+    digest: 6bc7816e4a4012a09c085e3f17704723970cffbf7241ef50d214167592653509 
+
+  - kind: file
+    url: http://ftp.cn.debian.org/debian/pool/main/z/zziplib/zziplib-bin_0.13.62-3.2+deb10u1_amd64.deb
+    digest: 218682a4e3ea00675595e2b22ad6a7580ea32e0b431d7fbed4466866c32c6a65 
+
+  - kind: file
+    url: http://ftp.cn.debian.org/debian/pool/main/z/zziplib/libzzip-dev_0.13.62-3.2+deb10u1_amd64.deb
+    digest: d3971375b62b8c88f762251cf1b3ebd2bf35808cfffe15501461949d0cebe84c 
+
+build: |
+  bash ./install_dep linglong/sources $PREFIX
+  cd /project/linglong/sources/qmanga.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make
+  make install
