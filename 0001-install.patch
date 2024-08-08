@@ -1,0 +1,47 @@
+From db078841641f5b60fd37f1b3a425db100b55df42 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Tue, 6 Aug 2024 21:35:10 +0800
+Subject: [PATCH] install
+
+---
+ qmanga.desktop | 9 +++++++++
+ qmanga.pro     | 8 ++++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 qmanga.desktop
+
+diff --git a/qmanga.desktop b/qmanga.desktop
+new file mode 100644
+index 0000000..88703ec
+--- /dev/null
++++ b/qmanga.desktop
+@@ -0,0 +1,9 @@
++[Desktop Entry]
++Type=Application
++Name=QManga
++Exec=qmanga %f
++Icon=Alien9
++GenericName=QManga book reader
++Terminal=false
++Categories=Application;Graphics;Viewer;
++MimeType=application/x-cbz;application/x-cbr;image/jpeg;image/png;image/gif;image/bmp;application/x-zip;application/zip;application/x-rar;application/pdf;image/vnd.djvu
+\ No newline at end of file
+diff --git a/qmanga.pro b/qmanga.pro
+index 4a17dc7..d47c258 100644
+--- a/qmanga.pro
++++ b/qmanga.pro
+@@ -165,3 +165,11 @@ OTHER_FILES += \
+     org.kernel1024.jpreader.browsercontroller.xml \
+     org.qjrad.dictionary.xml \
+     README.md
++
++target.path = $$PREFIX/bin
++desktop.files = qmanga.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = img/Alien9.png
++
++INSTALLS += target desktop icons
+\ No newline at end of file
+-- 
+2.43.4
+
